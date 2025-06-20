@@ -3,7 +3,7 @@ pygame.init()
 
 screen=pygame.display.set_mode((700,700))
 
-class rectanglesss:
+"""class rectanglesss:
     def __init__(self,colour,dimensions):
         self.colour=colour
         self.dimensions=dimensions
@@ -24,4 +24,38 @@ while True:
     rectred.shapefactorie()
     rectblue.shapefactorie()
     rectgreen.shapefactorie()
-    pygame.display.update()
+    pygame.display.update()"""
+
+class drawcircles():
+    def __init__(self,colour,position,radius):
+        self.colour=colour
+        self.position=position
+        self.radius=radius
+        self.screen=screen
+    def drawingonscreen(self):
+        pygame.draw.circle(self.screen,self.colour,self.position,self.radius)
+
+    def increaseradius(self):
+        self.radius+=50
+        pygame.draw.circle(self.screen,self.colour,self.position,self.radius)
+
+circlegreen=drawcircles((40,180,40),(40,200),100)
+circlered=drawcircles((180,40,40),(40,200),200)
+circleblue=drawcircles((40,40,180),(40,200),300)
+
+while True:
+    screen.fill((240,240,255))
+    for event in pygame.event.get():
+        if event.type==pygame.QUIT:
+            exit()
+        if event.type==pygame.MOUSEBUTTONDOWN:
+
+            circlered.drawingonscreen()
+            circleblue.drawingonscreen()
+            circlegreen.drawingonscreen()
+            pygame.display.update()
+        if event.type==pygame.MOUSEBUTTONUP:
+            circlered.increaseradius()
+            circleblue.increaseradius()
+            circlegreen.increaseradius()
+            pygame.display.update()
