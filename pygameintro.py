@@ -43,19 +43,23 @@ circlegreen=drawcircles((40,180,40),(40,200),100)
 circlered=drawcircles((180,40,40),(40,200),200)
 circleblue=drawcircles((40,40,180),(40,200),300)
 
+screen.fill((240,240,255))
 while True:
-    screen.fill((240,240,255))
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             exit()
         if event.type==pygame.MOUSEBUTTONDOWN:
-
             circlered.drawingonscreen()
             circleblue.drawingonscreen()
             circlegreen.drawingonscreen()
             pygame.display.update()
-        if event.type==pygame.MOUSEBUTTONUP:
+        elif event.type==pygame.MOUSEBUTTONUP:
             circlered.increaseradius()
             circleblue.increaseradius()
             circlegreen.increaseradius()
+            pygame.display.update()
+        elif event.type==pygame.MOUSEMOTION:
+            mousepos=pygame.mouse.get_pos()
+            circleblack=drawcircles((0,0,0),mousepos,10)
+            circleblack.drawingonscreen()
             pygame.display.update()
